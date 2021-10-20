@@ -1,0 +1,14 @@
+
+mol load parm7 large.prmtop dcd large.0.dcd
+set a [atomselect top "name CA"]
+set atoms [$a get index]
+set out [open "indexfile.txt" w]
+puts $out $atoms
+close $out
+#In order to be able to work with the resulting file, you might need a PDB file of only the CAs too:
+$a writepdb "short.pdb"
+exit
+#Afterwards use catdcd e.g.:
+#~/LINUXAMD64/bin/catdcd4.0/catdcd -o short.dcd -otype dcd -i indexfile.txt -first 40000 -stride 1 -dcd large.0.dcd
+
+

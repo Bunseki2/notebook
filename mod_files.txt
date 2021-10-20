@@ -1,0 +1,23 @@
+# nano dcdtransform_template.txt 
+sed -e 's/large/5281693_MARK4_32-1_80A_v1/g' dcdtransform_template.txt > temp1.txt
+sed -e 's/short/5281693_MARK4_32-1_80A_v1_CA/g'  temp1.txt > dcdtransform1.tcl
+sed -e 's/v1/v2/g' dcdtransform1.tcl  >  dcdtransformv2.tcl
+sed -e 's/v1/v3/g' dcdtransform1.tcl  >  dcdtransformv3.tcl
+
+vmd -dispdev text -e dcdtransform1.tcl
+
+~/LINUXAMD64/bin/catdcd4.0/catdcd -o 5281693_MARK4_32-1_80A_v1_CA.dcd -otype dcd -i indexfile.txt -first 70000 -stride 1 -dcd 5281693_MARK4_32-1_80A_v1.0.dcd
+
+
+vmd -dispdev text -e dcdtransformv2.tcl
+
+~/LINUXAMD64/bin/catdcd4.0/catdcd -o 5281693_MARK4_32-1_80A_v2_CA.dcd -otype dcd -i indexfile.txt -first 70000 -stride 1 -dcd 5281693_MARK4_32-1_80A_v2.0.dcd
+
+
+
+vmd -dispdev text -e dcdtransformv3.tcl
+
+~/LINUXAMD64/bin/catdcd4.0/catdcd -o 5281693_MARK4_32-1_80A_v3_CA.dcd -otype dcd -i indexfile.txt -first 70000 -stride 1 -dcd 5281693_MARK4_32-1_80A_v3.0.dcd
+
+
+
